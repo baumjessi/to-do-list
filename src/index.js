@@ -1,3 +1,4 @@
+import "./style.css";
 import { addToTaskLibrary, displayTaskLibrary, filterTaskByProject, removeFromTaskLibrary } from "./task-library";
 import { addToProjectLibrary, displayProjectLibrary, removeFromProjectLibrary } from "./project-library";
 
