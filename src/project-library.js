@@ -17,6 +17,13 @@ function removeFromProjectLibrary(title) {
   projectLibrary = newProjectLibrary;
 }
 
+function getProjectsByName() {
+  const projectNamesArray = projectLibrary.map((project) => {
+    return project.title;
+  });
+  return projectNamesArray;
+}
+
 function displayProjectLibrary() {
   console.log(projectLibrary);
 }
@@ -26,4 +33,5 @@ export {
   addToProjectLibrary,
   removeFromProjectLibrary,
   displayProjectLibrary,
+  getProjectsByName
 };

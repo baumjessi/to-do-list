@@ -1,6 +1,7 @@
 import "./style.css";
 import { addToTaskLibrary, displayTaskLibrary, filterTaskByProject, removeFromTaskLibrary } from "./task-library";
-import { addToProjectLibrary, displayProjectLibrary, removeFromProjectLibrary } from "./project-library";
+import { addToProjectLibrary, displayProjectLibrary, removeFromProjectLibrary, getProjectsByName } from "./project-library";
+import { showProjects } from "./project-dom";
 
 addToTaskLibrary("Practice Ollie", "N/A", "10/31/2025", "High", "skateboarding");
 addToTaskLibrary("practice shuvit", "N/A", "10/31/2025", "Medium", "skateboarding");
@@ -18,5 +19,8 @@ displayTaskLibrary();
 addToProjectLibrary("Skateboarding and Yoga");
 addToProjectLibrary("Art and Coding");
 displayProjectLibrary();
-removeFromProjectLibrary("Skateboarding and Yoga");
 displayProjectLibrary();
+
+showProjects();
+
+console.log(getProjectsByName());
