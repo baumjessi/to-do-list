@@ -1,7 +1,7 @@
 import "./style.css";
 import { addToTaskLibrary, displayTaskLibrary, filterTaskByProject, removeFromTaskLibrary } from "./task-library";
 import { addToProjectLibrary, displayProjectLibrary, removeFromProjectLibrary, getProjectsByName } from "./project-library";
-import { showProjects } from "./project-dom";
+import { showProjects, checkForProjectDiv } from "./project-dom";
 
 addToTaskLibrary("Practice Ollie", "N/A", "10/31/2025", "High", "skateboarding");
 addToTaskLibrary("practice shuvit", "N/A", "10/31/2025", "Medium", "skateboarding");
@@ -24,3 +24,5 @@ displayProjectLibrary();
 showProjects();
 
 console.log(getProjectsByName());
+
+checkForProjectDiv();

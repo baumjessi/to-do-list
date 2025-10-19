@@ -1,30 +1,49 @@
 import { getProjectsByName } from "./project-library";
 
+let sidebar = document.getElementById("sidebar");
+
 function createProjectDiv() {
     let projectDiv = document.createElement("div");
-    let sidebar = document.getElementById("sidebar");
+    projectDiv.id = "project-div";
     sidebar.appendChild(projectDiv);
     let projectNamesArray = getProjectsByName();
     projectNamesArray.forEach(element => {
-        var addedProjectBtn = document.createElement("button");
-        addedProjectBtn.innerText = element;
-        projectDiv.appendChild(addedProjectBtn);
-        addedProjectBtn.className = "added-project-button";
+        var projectBtn = document.createElement("button");
+        projectBtn.innerText = element;
+        projectDiv.appendChild(projectBtn);
+        projectBtn.className = "project-button";
     });
+}
+
+function createAddProjectBtn() {
+    let addNewProjectBtn = document.createElement("button");
+    addNewProjectBtn.className = "project-button";
+    addNewProjectBtn.innerText = "Add new project...";
+    sidebar.appendChild(addNewProjectBtn);
 }
 
 function showProjects() {
     let projectDropDownButton = document.getElementById("project-dropdown-button");
     projectDropDownButton.addEventListener("click", (e) =>{
         createProjectDiv();
+        createAddProjectBtn();
+        checkForProjectDiv();
     })
 }
 
-function hideProjects() {
-
+function checkForProjectDiv() {
+    let projectDiv = document.getElementById("project-div");
+    if (sidebar.contains(projectDiv)) {
+        console.log("true");
+    }
+    else 
+    {
+        console.log("false");
+    }
 }
 
 export {
     createProjectDiv,
-    showProjects
+    showProjects,
+    checkForProjectDiv
 }
