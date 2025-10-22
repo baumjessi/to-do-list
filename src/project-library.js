@@ -32,6 +32,6 @@ export {
   Project,
   addToProjectLibrary,
   removeFromProjectLibrary,
-  displayProjectLibrary,
-  getProjectsByName
+  getProjectsByName,
+  displayProjectLibrary
 };
