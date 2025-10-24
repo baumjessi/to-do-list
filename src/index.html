@@ -13,11 +13,43 @@
     </header>
     <div class="app-content">
       <div class="sidebar" id="sidebar">
-        <button class="add-task-button">
+        <button class="add-task-button" id="add-task-button">
             <img src="./assets/add.png" class="sidebar-icon add-icon" alt="Add icon">Add new task</button>
         <button class="all-tasks-button">
             <img src="./assets/all-tasks.png" class="sidebar-icon all-tasks-icon" alt="All tasks icon">
-            All Tasks</buttton>
+            All Tasks</button>
+        <dialog id="new-task-dialog">
+          <form id="new-task-form">
+            <h1>New Task</h1>
+            <div class="dialog-input">
+              <label for="title">Title</label>
+              <input type="text" id="title" name="title" required>
+            </div>
+             <div class="dialog-input">
+              <label for="description">Description</label>
+              <input type="text" id="description" name="description" required>
+            </div>
+             <div class="dialog-input">
+              <label for="title">Date</label>
+              <input type="date">
+            </div>
+             <div class="dialog-input">
+              <label for="priority">Priority</label>
+              <select id="priority" name="priority">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+                </select>
+            </div>
+             <div class="dialog-input">
+              <label for="project">Project</label>
+              <select id="project" name="project">
+                <option value="project">Projects will go here</option>
+               </select>
+            </div>
+             <button class="form-submit">+</button>
+          </form>
+        </dialog>
         <button class="project-dropdown-button" id="project-dropdown-button">
             <img src="./assets/right-arrow.png" class="sidebar-icon right-arrow" Alt="Arrow to expand projects list">Projects
             </button>
