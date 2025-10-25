@@ -2,7 +2,7 @@ import "./style.css";
 import { addToTaskLibrary, displayTaskLibrary, filterTaskByProject, removeFromTaskLibrary } from "./task-library";
 import { addToProjectLibrary, displayProjectLibrary } from "./project-library";
 import { projectDivEventHandler } from "./project-dom";
-import { addTaskViaBtn } from "./task-dom";
+import { showAddTaskDialog, exitAddTaskDialog, projectSelectMenuHandler } from "./task-dom";
 
 addToTaskLibrary("Practice Ollie", "N/A", "10/31/2025", "High", "skateboarding");
 addToTaskLibrary("practice shuvit", "N/A", "10/31/2025", "Medium", "skateboarding");
@@ -24,4 +24,7 @@ displayProjectLibrary();
 
 projectDivEventHandler();
 
-addTaskViaBtn();
+showAddTaskDialog();
+exitAddTaskDialog();
+
+projectSelectMenuHandler();
