@@ -1,5 +1,6 @@
 import { getProjectsByName } from "./project-library";
-
+import { addToTaskLibrary, displayTaskLibrary } from "./task-library";
+ 
 let newTaskDialog = document.getElementById("new-task-dialog");
 
 function showAddTaskDialog() {
@@ -16,6 +17,20 @@ function exitAddTaskDialog() {
   });
 }
 
+function newTaskFormSubmit() {
+    let newTaskForm = document.getElementById("new-task-form");
+    let title = document.getElementById("title");
+    let description = document.getElementById("description");
+    let date = document.getElementById("date");
+    let priority = document.getElementById("priority");
+    let project = document.getElementById("project");
+    newTaskForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        addToTaskLibrary(title.value, description.value, date.value, priority.value, project.value);
+        displayTaskLibrary();
+    });
+}
+
 function projectSelectMenuHandler() {
     let projectSelectMenu = document.getElementById("project");
     let projectNamesArray = getProjectsByName();
@@ -27,4 +42,4 @@ function projectSelectMenuHandler() {
     })
 }
 
-export { showAddTaskDialog, exitAddTaskDialog, projectSelectMenuHandler };
+export { showAddTaskDialog, exitAddTaskDialog, projectSelectMenuHandler, newTaskFormSubmit };
