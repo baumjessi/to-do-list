@@ -32,5 +32,30 @@ function displayTaskLibrary() {
   console.log(taskLibrary);
 }
 
+//local storage
+
+function getAllTasks() {
+    const tasks = JSON.parse(localStorage.getItem("task-library") || "[]");
+    return tasks;
+}
+
+function saveTask(title, description, dueDate, priority, project) {
+    let newTask = new Task(title, description, dueDate, priority, project);
+    const tasks = getAllTasks();
+    tasks.push(newTask);
+    localStorage.setItem("all-saved-tasks", JSON.stringify(tasks));
+}
+
+function removeTask(ID) {}
+
+function editTask() {}
+
+export {
+    getAllTasks,
+    saveTask,
+    removeTask,
+    editTask
+}
+
 
 export { Task, addToTaskLibrary, removeFromTaskLibrary, filterTaskByProject, displayTaskLibrary };
