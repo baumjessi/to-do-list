@@ -1,21 +1,8 @@
 import "./style.css";
-import { addToTaskLibrary, displayTaskLibrary, filterTaskByProject, removeFromTaskLibrary } from "./task-library";
+import { saveTask, removeTask } from "./task-library";
 import { addToProjectLibrary, displayProjectLibrary } from "./project-library";
 import { projectDivEventHandler } from "./project-dom";
 import { showAddTaskDialog, exitAddTaskDialog, projectSelectMenuHandler, newTaskFormSubmit } from "./task-dom";
-
-addToTaskLibrary("Practice Ollie", "N/A", "10/31/2025", "High", "skateboarding");
-addToTaskLibrary("practice shuvit", "N/A", "10/31/2025", "Medium", "skateboarding");
-addToTaskLibrary("practice strawberry milkshake", "N/A", "10/31/2025", "High");
-addToTaskLibrary("finish words", "N/A", "10/31/2025", "Medium", "comic");
-addToTaskLibrary("scan pages", "N/A", "10/31/2025", "high", "comic");
-addToTaskLibrary("print copies", "N/A", "10/31/2025", "high", "comic");
-displayTaskLibrary();
-removeFromTaskLibrary("Skateboard");
-displayTaskLibrary();
-filterTaskByProject("comic");
-displayTaskLibrary();
-
 
 addToProjectLibrary("Skateboarding and Yoga");
 addToProjectLibrary("Art and Coding");
@@ -30,3 +17,10 @@ exitAddTaskDialog();
 projectSelectMenuHandler();
 
 newTaskFormSubmit();
+
+let poop = document.getElementById("poop");
+poop.addEventListener("click", (e) => {
+    removeTask(
+"4915b000-b668-4631-a4e1-7d87c8280917"
+);
+});
