@@ -1,6 +1,3 @@
-
-let taskLibrary = [];
-
 function Task(title, description, dueDate, priority, project) {
   this.title = title;
   this.description = description;
@@ -21,7 +18,7 @@ function filterTaskByProject(project) {
 //local storage
 
 function getAllTasks() {
-    const tasks = JSON.parse(localStorage.getItem("task-library"));
+    const tasks = JSON.parse(localStorage.getItem("task-library") || "[]");
     return tasks;
 }
 

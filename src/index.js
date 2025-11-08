@@ -1,13 +1,10 @@
 import "./style.css";
-import { saveTask, removeTask } from "./task-library";
-import { addToProjectLibrary, displayProjectLibrary } from "./project-library";
-import { projectDivEventHandler } from "./project-dom";
-import { showAddTaskDialog, exitAddTaskDialog, projectSelectMenuHandler, newTaskFormSubmit } from "./task-dom";
+import { saveProject } from "./project-library";
+import { projectDivEventHandler } from "./project-sidebar";
+import { showAddTaskDialog, exitAddTaskDialog, projectSelectMenuHandler, newTaskFormSubmit } from "./task-sidebar";
 
-addToProjectLibrary("Skateboarding and Yoga");
-addToProjectLibrary("Art and Coding");
-displayProjectLibrary();
-displayProjectLibrary();
+saveProject("Skateboarding and Yoga");
+saveProject("Art and Coding");
 
 projectDivEventHandler();
 
@@ -17,10 +14,3 @@ exitAddTaskDialog();
 projectSelectMenuHandler();
 
 newTaskFormSubmit();
-
-let poop = document.getElementById("poop");
-poop.addEventListener("click", (e) => {
-    removeTask(
-"4915b000-b668-4631-a4e1-7d87c8280917"
-);
-});

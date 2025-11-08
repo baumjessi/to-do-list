@@ -1,8 +1,9 @@
 import { getProjectsByName } from "./project-library";
-import { addToTaskLibrary, saveTask, displayTaskLibrary } from "./task-library";
+import { saveTask } from "./task-library";
 
  
 let newTaskDialog = document.getElementById("new-task-dialog");
+let newTaskForm = document.getElementById("new-task-form");
 
 function showAddTaskDialog() {
   let addTaskBtn = document.getElementById("add-task-button");
@@ -15,12 +16,11 @@ function exitAddTaskDialog() {
   let exitTaskDialogBtn = document.getElementById("dialog-exit");
   exitTaskDialogBtn.addEventListener("click", (e) => {
     newTaskDialog.close();
-    newTaskDialog.reset();
+    newTaskForm.reset();
   });
 }
 
 function newTaskFormSubmit() {
-    let newTaskForm = document.getElementById("new-task-form");
     let title = document.getElementById("title");
     let description = document.getElementById("description");
     let date = document.getElementById("date");
@@ -33,7 +33,6 @@ function newTaskFormSubmit() {
         newTaskForm.reset();
     });
 }
-
 
 function projectSelectMenuHandler() {
     let projectSelectMenu = document.getElementById("project");
