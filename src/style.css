@@ -168,9 +168,14 @@ header {
   display: flex;
 }
 
-.task-card-button {
-  height: 2ch;
+.task-card-button-icon {
+  height: 3ch;
   width: auto;
+}
+
+.task-card-button {
+  background: none;
+  border: none;
 }
 
 .task-card-top-div {
@@ -181,12 +186,29 @@ header {
 
 .task-card-bottom-div {
   display: flex;
+  justify-content: space-between;
 }
 
 .task-card-priority,
 .task-card-project {
-  color: red;
   border: 1px solid red;
   border-radius: 8px;
   padding: 2px;
+}
+
+.low-priority {
+  color: blue;
+}
+
+.medium-priority {
+  color: yellow;
+}
+
+.high-priority {
+  color: red;
+}
+
+.task-card-bottom-right {
+  display: flex;
+  gap: 8px;
 }
