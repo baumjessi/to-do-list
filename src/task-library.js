@@ -6,7 +6,7 @@ function Task(title, description, dueDate, priority, project) {
   this.dueDate = dueDate;
   this.priority = priority;
   this.project = project;
-  this.UUID = crypto.randomUUID();
+  this.id = crypto.randomUUID();
 }
 
 

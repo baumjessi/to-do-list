@@ -7,7 +7,7 @@ import {
   projectSelectMenuHandler,
   newTaskFormSubmit,
 } from "./task-sidebar";
-import { deleteTaskCard, setPriorityColor } from "./task-card-display";
+import { deleteTaskCard, setPriorityColor, taskButtonEventHandler } from "./task-card-display";
 
 saveProject("Skateboarding and Yoga");
 saveProject("Art and Coding");
@@ -21,7 +21,4 @@ projectSelectMenuHandler();
 
 newTaskFormSubmit();
 
-
-deleteTaskCard();
-
-console.log(setPriorityColor("medium"));
+taskButtonEventHandler();

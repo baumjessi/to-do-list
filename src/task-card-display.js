@@ -67,6 +67,7 @@ function createTaskCard(title, description, date, priority, project, id) {
   bottomDivRightDiv.appendChild(priorityText);
   //id
   newTaskCard.setAttribute("data-id", id);
+  console.log(id);
   //append to top div
   topDiv.appendChild(titleText);
   topDiv.appendChild(buttonDiv);
@@ -77,16 +78,16 @@ function createTaskCard(title, description, date, priority, project, id) {
   bottomDiv.appendChild(bottomDivRightDiv);
 }
 
-function deleteTaskCard() {
-  let deleteButton = document.getElementsByClassName("delete-button");
-  Array.from(deleteButton).forEach((button) => {
-    button.addEventListener(
-      ("click",
-      (e) => {
-        let selectedTaskCard = button.parentElement.parentElement.parentElement;
-        selectedTaskCard.remove();
-      })
-    );
+
+function taskButtonEventHandler() {
+  let taskCardContainer = document.querySelector(".task-container");
+  taskCardContainer.addEventListener("click", (e) => {
+    if (e.target.classList.contains("edit-button")) {
+      console.log("button icon was clicked");}
+    else if (e.target.classList.contains("delete-button")) {
+      e.target.closest(".task-card").remove();
+      console.log("card is deleted");
+    }
   });
 }
 
@@ -105,4 +106,5 @@ else if (priority === "low") {
   return priorityClass;
 }
 }
-export { createTaskCard, deleteTaskCard, setPriorityColor };
+
+export { createTaskCard, taskButtonEventHandler, setPriorityColor };

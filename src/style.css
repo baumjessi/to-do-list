@@ -171,6 +171,7 @@ header {
 .task-card-button-icon {
   height: 3ch;
   width: auto;
+  pointer-events: none;
 }
 
 .task-card-button {
