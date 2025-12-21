@@ -7,7 +7,7 @@ import {
   projectSelectMenuHandler,
   newTaskFormSubmit,
 } from "./task-sidebar";
-import { deleteTaskCard, setPriorityColor, taskButtonEventHandler } from "./task-card-display";
+import { taskButtonEventHandler, editTaskFormSubmit } from "./task-card-display";
 
 saveProject("Skateboarding and Yoga");
 saveProject("Art and Coding");
@@ -22,3 +22,5 @@ projectSelectMenuHandler();
 newTaskFormSubmit();
 
 taskButtonEventHandler();
+
+editTaskFormSubmit();

@@ -1,8 +1,10 @@
 import deleteButtonImg from "./assets/bin.png";
 import editButtonImg from "./assets/edit.png";
-import { removeTask } from "./task-library";
+import { editTask, removeTask } from "./task-library";
 
 let taskContainerGrid = document.getElementById("task-container-grid");
+let editTaskDialog = document.getElementById("edit-task-dialog");
+let editTaskForm = document.getElementById("edit-task-form");
 
 function createTaskCard(title, description, date, priority, project, id) {
   const newTaskCard = document.createElement("div");
@@ -67,7 +69,6 @@ function createTaskCard(title, description, date, priority, project, id) {
   bottomDivRightDiv.appendChild(priorityText);
   //id
   newTaskCard.setAttribute("data-id", id);
-  console.log(id);
   //append to top div
   topDiv.appendChild(titleText);
   topDiv.appendChild(buttonDiv);
@@ -78,33 +79,54 @@ function createTaskCard(title, description, date, priority, project, id) {
   bottomDiv.appendChild(bottomDivRightDiv);
 }
 
-
 function taskButtonEventHandler() {
   let taskCardContainer = document.querySelector(".task-container");
   taskCardContainer.addEventListener("click", (e) => {
+    let selectedTask = e.target.closest(".task-card");
+    let id = selectedTask.dataset.id;
     if (e.target.classList.contains("edit-button")) {
-      console.log("button icon was clicked");}
-    else if (e.target.classList.contains("delete-button")) {
-      e.target.closest(".task-card").remove();
-      console.log("card is deleted");
+      showEditTaskDialog();
+    } else if (e.target.classList.contains("delete-button")) {
+      selectedTask.remove();
+      removeTask(id);
     }
   });
 }
 
-function setPriorityColor(priority) {
-let priorityClass
-if (priority === "high") {
-  priorityClass = "high-priority";
-  return priorityClass;
-}
-else if (priority === "medium") {
-  priorityClass = "medium-priority";
-  return priorityClass;
-}
-else if (priority === "low") {
-  priorityClass = "low-priority";
-  return priorityClass;
-}
+function showEditTaskDialog() {
+  editTaskDialog.showModal();
 }
 
-export { createTaskCard, taskButtonEventHandler, setPriorityColor };
+function editTaskFormSubmit() {
+  editTaskForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const editTaskFormData = new FormData(editTaskForm);
+    const editTaskFormDataObject = Object.fromEntries(editTaskFormData);
+    localStorage.setItem("editTaskData", JSON.stringify(editTaskFormDataObject));
+    editTaskWithFormData();
+    editTaskDialog.close();
+    editTaskForm.reset();
+  });
+}
+
+function editTaskWithFormData() {
+  const editTaskData = JSON.parse(localStorage.getItem("editTaskData"));
+  console.log(editTaskData);
+  localStorage.removeItem("editTaskData");
+}
+
+function setPriorityColor(priority) {
+  let priorityClass;
+  if (priority === "high") {
+    priorityClass = "high-priority";
+    return priorityClass;
+  } else if (priority === "medium") {
+    priorityClass = "medium-priority";
+    return priorityClass;
+  } else if (priority === "low") {
+    priorityClass = "low-priority";
+    return priorityClass;
+  }
+}
+
+export { createTaskCard, taskButtonEventHandler, setPriorityColor, editTaskFormSubmit };

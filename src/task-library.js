@@ -1,4 +1,4 @@
-import { createTaskCard } from "./task-card-display";
+import { createTaskCard, taskButtonEventHandler } from "./task-card-display";
 
 function Task(title, description, dueDate, priority, project) {
   this.title = title;
@@ -9,13 +9,6 @@ function Task(title, description, dueDate, priority, project) {
   this.id = crypto.randomUUID();
 }
 
-
-function filterTaskByProject(project) {
-  const newTaskLibrary = taskLibrary.filter((task) => {
-    return task.project === project;
-  })
-  taskLibrary = newTaskLibrary;
-}
 
 //local storage
 
@@ -32,10 +25,25 @@ function saveTask(title, description, dueDate, priority, project) {
     localStorage.setItem("task-library", JSON.stringify(tasks));
 }
 
+function editTask(id, title, description, dueDate, priority, project) {
+  const tasks = getAllTasks();
+  let updatedTasks = tasks.map(task => {
+    if (task.id === id) {
+      task.title = title;
+      task.description = description;
+      task.dueDate = dueDate;
+      task.priority = priority;
+      task.project = project;
+    }
+    return task;
+  })
+  localStorage.setItem("task-library", JSON.stringify(updatedTasks));
+}
+
 function removeTask(id) {
   let tasks = getAllTasks();
   let updatedTasks = tasks.filter((task) => {
-    return task.UUID !== id;
+    return task.id !== id;
   })
   localStorage.setItem("task-library", JSON.stringify(updatedTasks));
 }
@@ -44,6 +52,7 @@ export {
     Task,
     getAllTasks,
     saveTask,
+    editTask,
     removeTask,
 }
 
