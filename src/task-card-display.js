@@ -85,6 +85,7 @@ function taskButtonEventHandler() {
     let selectedTask = e.target.closest(".task-card");
     let id = selectedTask.dataset.id;
     if (e.target.classList.contains("edit-button")) {
+      saveEditTaskId(id);
       showEditTaskDialog();
     } else if (e.target.classList.contains("delete-button")) {
       selectedTask.remove();
@@ -109,10 +110,19 @@ function editTaskFormSubmit() {
   });
 }
 
+function saveEditTaskId(id) {
+  localStorage.setItem("id", id);
+}
+
 function editTaskWithFormData() {
+  const id = localStorage.getItem("id");
   const editTaskData = JSON.parse(localStorage.getItem("editTaskData"));
+  const { editTitle, editDescription, editDueDate, editPriority, editProject } = editTaskData;
+  console.log(editTitle, editDescription, editDueDate, editPriority, editProject);
   console.log(editTaskData);
+  editTask(id, editTitle, editDescription, editDueDate, editPriority, editProject);
   localStorage.removeItem("editTaskData");
+  localStorage.removeItem("id");
 }
 
 function setPriorityColor(priority) {
