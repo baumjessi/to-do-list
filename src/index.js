@@ -8,6 +8,7 @@ import {
   newTaskFormSubmit,
 } from "./task-sidebar";
 import { taskButtonEventHandler, editTaskFormSubmit } from "./task-card-display";
+import { displayAllTasks } from "./on-page-load";
 
 saveProject("Skateboarding and Yoga");
 saveProject("Art and Coding");
@@ -24,3 +25,5 @@ newTaskFormSubmit();
 taskButtonEventHandler();
 
 editTaskFormSubmit();
+
+displayAllTasks();
