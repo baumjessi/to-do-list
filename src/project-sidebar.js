@@ -16,6 +16,14 @@ function createProjectDiv() {
   });
 }
 
+function displayProject(title) {
+  let projectDiv = document.getElementById("project-div");
+  let newProject = document.createElement("div");
+  newProject.className = "project-button";
+  projectDiv.appendChild(newProject);
+  newProject.innerText = title;
+}
+
 function createAddProjectBtn() {
   let projectDiv = document.getElementById("project-div");
   let addNewProjectBtn = document.createElement("button");
@@ -24,7 +32,18 @@ function createAddProjectBtn() {
   addNewProjectBtn.innerText = "Add new project...";
   sidebar.appendChild(addNewProjectBtn);
   addNewProjectBtn.addEventListener("click", (e) => {
-    //create div, form, input, & btn for adding projects
+   let doesNewProjectFormExist = checkForInputFormDiv();
+   if (doesNewProjectFormExist === false) {
+       displayNewProjectForm();
+   } else if (doesNewProjectFormExist === true) {
+    console.log("input animation will go here");
+   }
+  })
+};
+
+function displayNewProjectForm() {
+  let projectDiv = document.getElementById("project-div");
+ //create div, form, input, & btn for adding projects
     let newProjectInputDiv = document.createElement("div");
     newProjectInputDiv.id = "new-project-input-div";
     let newProjectInputForm = document.createElement("form");
@@ -44,8 +63,7 @@ function createAddProjectBtn() {
     //append div to sidebar
     projectDiv.appendChild(newProjectInputDiv);
     newProjectFormSubmit();
-  })
-};
+}
 
 function newProjectFormSubmit() {
   let newProjectInputDiv = document.getElementById("new-project-input-div");
@@ -54,11 +72,10 @@ function newProjectFormSubmit() {
   newProjectSubmitBtn.addEventListener("click", (e)=> {
     e.preventDefault();
     saveProject(newProjectInput.value);
+    displayProject(newProjectInput.value);
+    newProjectInputDiv.remove();
   })
-
 }
-
-
 
 function showProjects() {
   createProjectDiv();
@@ -94,6 +111,16 @@ function checkForProjectDiv() {
   if (sidebar.contains(projectDiv)) {
     return true;
   } else if (!sidebar.contains(projectDiv)) {
+    return false;
+  }
+}
+
+function checkForInputFormDiv() {
+  let projectDiv = document.getElementById("project-div");
+  let newProjectInputDiv = document.getElementById("new-project-input-div");
+  if (projectDiv.contains(newProjectInputDiv)) {
+    return true;
+  } else if (!projectDiv.contains(newProjectInputDiv)) {
     return false;
   }
 }
