@@ -1,5 +1,5 @@
 import { getProjectsByName } from "./project-library";
-import { taskButtonEventHandler } from "./task-card-display";
+import { saveProject } from "./project-library";
 
 let sidebar = document.getElementById("sidebar");
 
@@ -31,6 +31,8 @@ function createAddProjectBtn() {
     newProjectInputForm.id = "new-project-input-form";
     let newProjectInput = document.createElement("input");
     newProjectInput.id = "new-project-input";
+    newProjectInput.setAttribute("type", "text");
+    newProjectInput.setAttribute("name", "newProjectName");
     let newProjectSubmitBtn = document.createElement("button");
     newProjectSubmitBtn.id = "new-project-submit-button";
     newProjectSubmitBtn.textContent = "Save";
@@ -41,8 +43,22 @@ function createAddProjectBtn() {
     newProjectInputDiv.appendChild(newProjectInputForm);
     //append div to sidebar
     projectDiv.appendChild(newProjectInputDiv);
-  });
+    newProjectFormSubmit();
+  })
+};
+
+function newProjectFormSubmit() {
+  let newProjectInputDiv = document.getElementById("new-project-input-div");
+  let newProjectSubmitBtn = document.getElementById("new-project-submit-button");
+  let newProjectInput = document.getElementById("new-project-input");
+  newProjectSubmitBtn.addEventListener("click", (e)=> {
+    e.preventDefault();
+    saveProject(newProjectInput.value);
+  })
+
 }
+
+
 
 function showProjects() {
   createProjectDiv();

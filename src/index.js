@@ -1,6 +1,6 @@
 import "./style.css";
 import { saveProject } from "./project-library";
-import { projectDivEventHandler, displayNewProject } from "./project-sidebar";
+import { projectDivEventHandler, displayNewProject, newProjectFormSubmit } from "./project-sidebar";
 import {
   showAddTaskDialog,
   exitAddTaskDialog,
