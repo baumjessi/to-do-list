@@ -1,128 +1,169 @@
 import { getProjectsByName } from "./project-library";
 import { saveProject } from "./project-library";
+import { removeProject } from "./project-library";
+import deleteButtonImg from "./assets/bin.png";
+import editButtonImg from "./assets/edit.png";
 
 let sidebar = document.getElementById("sidebar");
 
-function createProjectDiv() {
-  let projectDiv = document.createElement("div");
-  projectDiv.id = "project-div";
-  sidebar.appendChild(projectDiv);
+function createProjectListDisplay() {
+  let projectListDisplay = document.createElement("div");
+  projectListDisplay.id = "project-list-display";
+  sidebar.appendChild(projectListDisplay);
+  //create container for projects within display\
+  let projectCardContainer = document.createElement("div");
+  projectListDisplay.appendChild(projectCardContainer);
+  projectCardContainer.id = "project-card-container";
   let projectNamesArray = getProjectsByName();
-  projectNamesArray.forEach((element) => {
-    var projectBtn = document.createElement("button");
-    projectBtn.innerText = element;
-    projectDiv.appendChild(projectBtn);
-    projectBtn.className = "project-button";
+  projectNamesArray.forEach((projectName) => {
+    createProjectCard(projectName);
   });
+  editAndDeleteProjectBtnHandler();
 }
 
-function displayProject(title) {
-  let projectDiv = document.getElementById("project-div");
-  let newProject = document.createElement("div");
-  newProject.className = "project-button";
-  projectDiv.appendChild(newProject);
-  newProject.innerText = title;
+function createProjectCard(projectName) {
+  let projectCardContainer = document.getElementById("project-card-container");
+  var projectCard = document.createElement("div");
+  projectCard.innerText = projectName;
+  projectCard.setAttribute("data-title", projectName);
+  projectCardContainer.appendChild(projectCard);
+  projectCard.className = "project-card";
+  //create edit btn
+  const editButton = document.createElement("button");
+  editButton.classList.add("project-button", "project-edit-button");
+  const editButtonIcon = new Image();
+  editButtonIcon.src = editButtonImg;
+  editButtonIcon.classList.add("project-button-icon");
+  editButton.appendChild(editButtonIcon);
+  //create delete btn
+  const deleteButton = document.createElement("button");
+  deleteButton.classList.add("project-button", "project-delete-button");
+  const deleteButtonIcon = new Image();
+  deleteButtonIcon.src = deleteButtonImg;
+  deleteButtonIcon.classList.add("project-button-icon");
+  deleteButton.appendChild(deleteButtonIcon);
+  //create div for btns & append to project link
+  const projectBtnDiv = document.createElement("div");
+  projectBtnDiv.appendChild(editButton);
+  projectBtnDiv.appendChild(deleteButton);
+  projectCard.appendChild(projectBtnDiv);
 }
 
 function createAddProjectBtn() {
-  let projectDiv = document.getElementById("project-div");
   let addNewProjectBtn = document.createElement("button");
-  addNewProjectBtn.className = "project-button";
+  addNewProjectBtn.className = "project-card";
   addNewProjectBtn.id = "add-new-project-button";
   addNewProjectBtn.innerText = "Add new project...";
   sidebar.appendChild(addNewProjectBtn);
   addNewProjectBtn.addEventListener("click", (e) => {
-   let doesNewProjectFormExist = checkForInputFormDiv();
-   if (doesNewProjectFormExist === false) {
-       displayNewProjectForm();
-   } else if (doesNewProjectFormExist === true) {
-    console.log("input animation will go here");
-   }
-  })
-};
+    let doesNewProjectFormExist = checkForInputFormDiv();
+    if (doesNewProjectFormExist === false) {
+      displayNewProjectForm();
+    } else if (doesNewProjectFormExist === true) {
+      console.log("input animation will go here");
+    }
+  });
+}
 
 function displayNewProjectForm() {
-  let projectDiv = document.getElementById("project-div");
- //create div, form, input, & btn for adding projects
-    let newProjectInputDiv = document.createElement("div");
-    newProjectInputDiv.id = "new-project-input-div";
-    let newProjectInputForm = document.createElement("form");
-    newProjectInputForm.id = "new-project-input-form";
-    let newProjectInput = document.createElement("input");
-    newProjectInput.id = "new-project-input";
-    newProjectInput.setAttribute("type", "text");
-    newProjectInput.setAttribute("name", "newProjectName");
-    let newProjectSubmitBtn = document.createElement("button");
-    newProjectSubmitBtn.id = "new-project-submit-button";
-    newProjectSubmitBtn.textContent = "Save";
-    //append form elements to form
-    newProjectInputForm.appendChild(newProjectInput);
-    newProjectInputForm.appendChild(newProjectSubmitBtn);
-    //append form to div
-    newProjectInputDiv.appendChild(newProjectInputForm);
-    //append div to sidebar
-    projectDiv.appendChild(newProjectInputDiv);
-    newProjectFormSubmit();
+  let projectListDisplay = document.getElementById("project-list-display");
+  //create div, form, input, & btn for adding projects
+  let newProjectInputDiv = document.createElement("div");
+  newProjectInputDiv.id = "new-project-input-div";
+  let newProjectInputForm = document.createElement("form");
+  newProjectInputForm.id = "new-project-input-form";
+  let newProjectInput = document.createElement("input");
+  newProjectInput.id = "new-project-input";
+  newProjectInput.setAttribute("type", "text");
+  newProjectInput.setAttribute("name", "newProjectName");
+  let newProjectSubmitBtn = document.createElement("button");
+  newProjectSubmitBtn.id = "new-project-submit-button";
+  newProjectSubmitBtn.textContent = "Save";
+  //append form elements to form
+  newProjectInputForm.appendChild(newProjectInput);
+  newProjectInputForm.appendChild(newProjectSubmitBtn);
+  //append form to div
+  newProjectInputDiv.appendChild(newProjectInputForm);
+  //append div to sidebar
+  projectListDisplay.appendChild(newProjectInputDiv);
+  newProjectFormSubmit();
 }
 
 function newProjectFormSubmit() {
   let newProjectInputDiv = document.getElementById("new-project-input-div");
-  let newProjectSubmitBtn = document.getElementById("new-project-submit-button");
+  let newProjectSubmitBtn = document.getElementById(
+    "new-project-submit-button"
+  );
   let newProjectInput = document.getElementById("new-project-input");
-  newProjectSubmitBtn.addEventListener("click", (e)=> {
+  newProjectSubmitBtn.addEventListener("click", (e) => {
     e.preventDefault();
     saveProject(newProjectInput.value);
-    displayProject(newProjectInput.value);
+    createProjectCard(newProjectInput.value);
     newProjectInputDiv.remove();
-  })
+  });
 }
 
 function showProjects() {
-  createProjectDiv();
+  createProjectListDisplay();
   createAddProjectBtn();
-  checkForProjectDiv();
+  checkForProjectListDisplay();
 }
 
 function hideProjects() {
-  let projectDiv = document.getElementById("project-div");
+  let projectListDisplay = document.getElementById("project-list-display");
   let addNewProjectBtn = document.getElementById("add-new-project-button");
-  projectDiv.remove();
+  projectListDisplay.remove();
   addNewProjectBtn.remove();
 }
 
-function projectDivEventHandler() {
+function editAndDeleteProjectBtnHandler() {
+  let projectCardContainer = document.getElementById("project-card-container");
+  projectCardContainer.addEventListener("click", (e) => {
+    let selectedProject = e.target.closest(".project-card");
+    let projectName = selectedProject.dataset.title;
+    console.log(projectName);
+    if (e.target.classList.contains("project-edit-button")) {
+      console.log("edit will go here");
+    } else if (e.target.classList.contains("project-delete-button")) {
+      removeProject(projectName);
+      selectedProject.remove();
+    }
+  });
+}
+
+function projectListDisplayEventHandler() {
   let projectDropDownButton = document.getElementById(
     "project-dropdown-button"
   );
   projectDropDownButton.addEventListener("click", (e) => {
-    let projectDivExists = checkForProjectDiv();
-    if (projectDivExists === true) {
+    let projectListDisplayExists = checkForProjectListDisplay();
+    if (projectListDisplayExists === true) {
       hideProjects();
       return;
-    } else if (projectDivExists === false) {
+    } else if (projectListDisplayExists === false) {
       showProjects();
       return;
     }
   });
 }
 
-function checkForProjectDiv() {
-  let projectDiv = document.getElementById("project-div");
-  if (sidebar.contains(projectDiv)) {
+function checkForProjectListDisplay() {
+  let projectListDisplay = document.getElementById("project-list-display");
+  if (sidebar.contains(projectListDisplay)) {
     return true;
-  } else if (!sidebar.contains(projectDiv)) {
+  } else if (!sidebar.contains(projectListDisplay)) {
     return false;
   }
 }
 
 function checkForInputFormDiv() {
-  let projectDiv = document.getElementById("project-div");
+  let projectListDisplay = document.getElementById("project-list-display");
   let newProjectInputDiv = document.getElementById("new-project-input-div");
-  if (projectDiv.contains(newProjectInputDiv)) {
+  if (projectListDisplay.contains(newProjectInputDiv)) {
     return true;
-  } else if (!projectDiv.contains(newProjectInputDiv)) {
+  } else if (!projectListDisplay.contains(newProjectInputDiv)) {
     return false;
   }
 }
 
-export { projectDivEventHandler };
+export { projectListDisplayEventHandler };

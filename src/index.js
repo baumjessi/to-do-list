@@ -1,6 +1,6 @@
 import "./style.css";
 import { saveProject } from "./project-library";
-import { projectDivEventHandler, displayNewProject, newProjectFormSubmit } from "./project-sidebar";
+import { projectListDisplayEventHandler, displayNewProject, newProjectFormSubmit } from "./project-sidebar";
 import {
   showAddTaskDialog,
   exitAddTaskDialog,
@@ -10,7 +10,7 @@ import {
 import { taskButtonEventHandler, editTaskFormSubmit } from "./task-card-display";
 import { displayAllTasks } from "./on-page-load";
 
-projectDivEventHandler();
+projectListDisplayEventHandler();
 
 showAddTaskDialog();
 exitAddTaskDialog();

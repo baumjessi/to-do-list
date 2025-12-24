@@ -51,9 +51,8 @@ header {
 }
 
 .all-tasks-button,
-.project-button,
+.project-card,
 .add-task-button,
-.project-button,
 .project-dropdown-button {
   border: none;
   color: rgb(0, 0, 0);
@@ -70,7 +69,7 @@ header {
   margin: 4px;
 }
 
-.project-button {
+.project-card {
   padding-left: 5ch;
 }
 
@@ -174,6 +173,10 @@ header {
   pointer-events: none;
 }
 
+.project-button-icon {
+  pointer-events: none;
+}
+
 .task-card-button {
   background: none;
   border: none;
@@ -212,4 +215,15 @@ header {
 .task-card-bottom-right {
   display: flex;
   gap: 8px;
+}
+
+.project-button-icon {
+  height: 2ch;
+  width: auto;
+}
+
+.project-button {
+  border: none;
+  background-color: transparent;
+  padding: none;
 }

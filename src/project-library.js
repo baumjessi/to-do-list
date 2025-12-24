@@ -23,10 +23,10 @@ function saveProject(title) {
     localStorage.setItem("project-library", JSON.stringify(projects));
 }
 
-function removeProject(id) {
+function removeProject(title) {
   let projects = getAllProjects();
   let updatedProjects = projects.filter((project) => {
-    return project.UUID !== id;
+    return project.title !== title;
   })
   localStorage.setItem("project-library", JSON.stringify(updatedProjects));
 }

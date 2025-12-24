@@ -23,7 +23,7 @@ function createTaskCard(title, description, date, priority, project, id) {
   //create button div
   const buttonDiv = document.createElement("div");
   buttonDiv.className = "task-card-button-div";
-  //edit button
+  //create edit button
   const editButton = document.createElement("button");
   editButton.classList.add("task-card-button", "edit-button");
   const editButtonIcon = new Image();
@@ -31,7 +31,7 @@ function createTaskCard(title, description, date, priority, project, id) {
   editButtonIcon.classList.add("task-card-button-icon");
   buttonDiv.appendChild(editButton);
   editButton.appendChild(editButtonIcon);
-  //delete button
+  //create delete button
   const deleteButton = document.createElement("button");
   deleteButton.classList.add("task-card-button", "delete-button");
   const deleteButtonIcon = new Image();
