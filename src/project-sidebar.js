@@ -123,13 +123,14 @@ function editAndDeleteProjectBtnHandler() {
     let projectName = selectedProject.dataset.title;
     console.log(projectName);
     if (e.target.classList.contains("project-edit-button")) {
-      console.log("edit will go here");
+      createEditProjectForm(selectedProject);
     } else if (e.target.classList.contains("project-delete-button")) {
       removeProject(projectName);
       selectedProject.remove();
     }
   });
 }
+
 
 function projectListDisplayEventHandler() {
   let projectDropDownButton = document.getElementById(
@@ -166,4 +167,23 @@ function checkForInputFormDiv() {
   }
 }
 
-export { projectListDisplayEventHandler };
+function createEditProjectForm(selectedProject) {
+  //create various elements
+  let editProjectForm = document.createElement("form");
+  editProjectForm.id = "edit-project-form";
+  let editProjectInput = document.createElement("input");
+  editProjectInput.placeholder = selectedProject.dataset.title;
+  let editProjectBtnDiv = document.createElement("div");
+  let editProjectSaveBtn = document.createElement("button");
+  editProjectSaveBtn.textContent = "Save";
+  let editProjectDeleteBtn = document.createElement("button");
+  editProjectDeleteBtn.textContent = "Cancel";
+  //append everything
+  editProjectBtnDiv.appendChild(editProjectSaveBtn);
+  editProjectBtnDiv.appendChild(editProjectDeleteBtn);
+  editProjectForm.appendChild(editProjectInput);
+  editProjectForm.appendChild(editProjectBtnDiv);
+  selectedProject.replaceChildren(editProjectForm);
+}
+
+export { projectListDisplayEventHandler, createEditProjectForm };
