@@ -17,17 +17,53 @@ function createProjectListDisplay() {
   let projectNamesArray = getProjectsByName();
   projectNamesArray.forEach((projectName) => {
     createProjectCard(projectName);
+
   });
   editAndDeleteProjectBtnHandler();
 }
 
-function createProjectCard(projectName) {
+// function createProjectCard(projectName) {
+//   let projectCardContainer = document.getElementById("project-card-container");
+//   var projectCard = document.createElement("div");
+//   projectCard.innerText = projectName;
+//   projectCard.setAttribute("data-title", projectName);
+//   projectCardContainer.appendChild(projectCard);
+//   projectCard.className = "project-card";
+//   //create edit btn
+//   const editButton = document.createElement("button");
+//   editButton.classList.add("project-button", "project-edit-button");
+//   const editButtonIcon = new Image();
+//   editButtonIcon.src = editButtonImg;
+//   editButtonIcon.classList.add("project-button-icon");
+//   editButton.appendChild(editButtonIcon);
+//   //create delete btn
+//   const deleteButton = document.createElement("button");
+//   deleteButton.classList.add("project-button", "project-delete-button");
+//   const deleteButtonIcon = new Image();
+//   deleteButtonIcon.src = deleteButtonImg;
+//   deleteButtonIcon.classList.add("project-button-icon");
+//   deleteButton.appendChild(deleteButtonIcon);
+//   //create div for btns & append to project link
+//   const projectBtnDiv = document.createElement("div");
+//   projectBtnDiv.appendChild(editButton);
+//   projectBtnDiv.appendChild(deleteButton);
+//   projectCard.appendChild(projectBtnDiv);
+// }
+
+function createProjectCard(projectTitle) {
   let projectCardContainer = document.getElementById("project-card-container");
-  var projectCard = document.createElement("div");
-  projectCard.innerText = projectName;
-  projectCard.setAttribute("data-title", projectName);
-  projectCardContainer.appendChild(projectCard);
+  let projectCard = document.createElement("div");
   projectCard.className = "project-card";
+  projectCard.setAttribute("data-title", projectTitle);
+  projectCardContainer.appendChild(projectCard);
+  createProjectCardContent(projectTitle, projectCard);
+}
+
+function createProjectCardContent(projectTitle, projectContainer) {
+  let projectCardContent = document.createElement("div");
+  let projectTitleBtn = document.createElement("button");
+  projectTitleBtn.textContent = projectTitle;
+  projectTitleBtn.className = "project-card";
   //create edit btn
   const editButton = document.createElement("button");
   editButton.classList.add("project-button", "project-edit-button");
@@ -42,11 +78,14 @@ function createProjectCard(projectName) {
   deleteButtonIcon.src = deleteButtonImg;
   deleteButtonIcon.classList.add("project-button-icon");
   deleteButton.appendChild(deleteButtonIcon);
-  //create div for btns & append to project link
+  //create div for btns & append btns
   const projectBtnDiv = document.createElement("div");
   projectBtnDiv.appendChild(editButton);
   projectBtnDiv.appendChild(deleteButton);
-  projectCard.appendChild(projectBtnDiv);
+   //append everything else
+  projectCardContent.appendChild(projectTitleBtn);
+  projectCardContent.appendChild(projectBtnDiv);
+  projectContainer.appendChild(projectCardContent);
 }
 
 function createAddProjectBtn() {
@@ -131,7 +170,6 @@ function editAndDeleteProjectBtnHandler() {
   });
 }
 
-
 function projectListDisplayEventHandler() {
   let projectDropDownButton = document.getElementById(
     "project-dropdown-button"
@@ -176,14 +214,21 @@ function createEditProjectForm(selectedProject) {
   let editProjectBtnDiv = document.createElement("div");
   let editProjectSaveBtn = document.createElement("button");
   editProjectSaveBtn.textContent = "Save";
-  let editProjectDeleteBtn = document.createElement("button");
-  editProjectDeleteBtn.textContent = "Cancel";
+  let editProjectCancelBtn = document.createElement("button");
+  editProjectCancelBtn.textContent = "Cancel";
+  editProjectCancelBtn.id = "edit-project-form-cancel-btn";
   //append everything
   editProjectBtnDiv.appendChild(editProjectSaveBtn);
-  editProjectBtnDiv.appendChild(editProjectDeleteBtn);
+  editProjectBtnDiv.appendChild(editProjectCancelBtn);
   editProjectForm.appendChild(editProjectInput);
   editProjectForm.appendChild(editProjectBtnDiv);
   selectedProject.replaceChildren(editProjectForm);
+}
+
+function editProjectFormCancelBtnHandler() {
+  let editProjectCancelBtn = document.getElementById(
+    "edit-project-form-cancel-btn"
+  );
 }
 
 export { projectListDisplayEventHandler, createEditProjectForm };
