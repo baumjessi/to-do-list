@@ -1,6 +1,8 @@
 import { editProject, saveProject, removeProject, getProjectsByName } from "./project-library";
 import deleteButtonImg from "./assets/bin.png";
 import editButtonImg from "./assets/edit.png";
+import { sortTasksByProject } from "./task-library";
+import { filterTaskCardDisplay } from "./task-card-display";
 
 import saveBtnImg from "./assets/save.png";
 import cancelBtnImg from "./assets/cancel.png";
@@ -64,6 +66,12 @@ function createProjectCardContent(projectTitle, projectCard) {
   projectCardContent.appendChild(projectBtnDiv);
   projectCard.appendChild(projectCardContent);
 }
+
+function projectTitleBtnEventHandler(projectTitle) {
+  let filteredTaskArray = sortTasksByProject(projectTitle);
+  filterTaskCardDisplay(filteredTaskArray);
+}
+
 
 function createAddProjectBtn() {
   let addNewProjectBtn = document.createElement("button");
@@ -156,6 +164,8 @@ function editAndDeleteProjectBtnHandler() {
       createProjectCardContent(newProjectTitle, selectedProject);
       editProject(projectTitle, newProjectTitle);
       console.log("save button else statement is working");
+    } else if (e.target.classList.contains("project-card-title-btn")) {
+      projectTitleBtnEventHandler(projectTitle);
     }
   })};
 
@@ -229,8 +239,6 @@ function createEditProjectForm(selectedProject) {
 function editProjectFormSubmitHandler() {
   let editProjectInput = document.getElementById("edit-project-input");
   let newProjectTitle = editProjectInput.value;
-  //next line will eventually by in LS
-  console.log(newProjectTitle);
   return newProjectTitle;
 }
 

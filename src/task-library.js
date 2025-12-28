@@ -48,11 +48,22 @@ function removeTask(id) {
   localStorage.setItem("task-library", JSON.stringify(updatedTasks));
 }
 
+function sortTasksByProject(projectTitle) {
+  let tasks = getAllTasks();
+  let updatedTasks = tasks.filter((task) =>{
+    if (task.project === projectTitle) {
+      return task;
+    }
+  })
+  return updatedTasks;
+}
+
 export {
     Task,
     getAllTasks,
     saveTask,
     editTask,
     removeTask,
+    sortTasksByProject,
 }
 

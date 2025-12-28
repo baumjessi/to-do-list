@@ -103,7 +103,10 @@ function editTaskFormSubmit() {
     e.preventDefault();
     const editTaskFormData = new FormData(editTaskForm);
     const editTaskFormDataObject = Object.fromEntries(editTaskFormData);
-    localStorage.setItem("editTaskData", JSON.stringify(editTaskFormDataObject));
+    localStorage.setItem(
+      "editTaskData",
+      JSON.stringify(editTaskFormDataObject)
+    );
     editTaskWithFormData();
     editTaskDialog.close();
     editTaskForm.reset();
@@ -117,10 +120,24 @@ function saveEditTaskId(id) {
 function editTaskWithFormData() {
   const id = localStorage.getItem("id");
   const editTaskData = JSON.parse(localStorage.getItem("editTaskData"));
-  const { editTitle, editDescription, editDueDate, editPriority, editProject } = editTaskData;
-  console.log(editTitle, editDescription, editDueDate, editPriority, editProject);
+  const { editTitle, editDescription, editDueDate, editPriority, editProject } =
+    editTaskData;
+  console.log(
+    editTitle,
+    editDescription,
+    editDueDate,
+    editPriority,
+    editProject
+  );
   console.log(editTaskData);
-  editTask(id, editTitle, editDescription, editDueDate, editPriority, editProject);
+  editTask(
+    id,
+    editTitle,
+    editDescription,
+    editDueDate,
+    editPriority,
+    editProject
+  );
   localStorage.removeItem("editTaskData");
   localStorage.removeItem("id");
 }
@@ -139,4 +156,22 @@ function setPriorityColor(priority) {
   }
 }
 
-export { createTaskCard, taskButtonEventHandler, setPriorityColor, editTaskFormSubmit };
+function filterTaskCardDisplay(filteredTaskArray) {
+  let taskCards = document.querySelectorAll(".task-card");
+  let taskCardsArray = Array.from(taskCards);
+  taskCardsArray.forEach((taskCard) => {
+    taskCard.remove();
+  });
+  filteredTaskArray.forEach((task) => {
+    const { title, description, dueDate, priority, project, id } = task;
+    createTaskCard(title, description, dueDate, priority, project, id);
+  });
+}
+
+export {
+  createTaskCard,
+  taskButtonEventHandler,
+  setPriorityColor,
+  editTaskFormSubmit,
+  filterTaskCardDisplay,
+};
