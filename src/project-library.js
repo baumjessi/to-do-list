@@ -23,6 +23,16 @@ function saveProject(title) {
     localStorage.setItem("project-library", JSON.stringify(projects));
 }
 
+function editProject(oldTitle, newTitle) {
+  const projects = getAllProjects();
+  let updatedProjects = projects.map(project => {
+    if (project.title === oldTitle) {
+      project.title = newTitle;
+    }
+    return project;
+  })
+  localStorage.setItem("project-library", JSON.stringify(updatedProjects));
+}
 function removeProject(title) {
   let projects = getAllProjects();
   let updatedProjects = projects.filter((project) => {
@@ -30,10 +40,12 @@ function removeProject(title) {
   })
   localStorage.setItem("project-library", JSON.stringify(updatedProjects));
 }
+
 export {
   Project,
   getProjectsByName,
   getAllProjects,
   saveProject,
+  editProject,
   removeProject
 };

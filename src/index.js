@@ -23,13 +23,3 @@ taskButtonEventHandler();
 
 editTaskFormSubmit();
 displayAllTasks();
-
-let poop = document.getElementById("poop");
-
-function changePoop() {
-  createEditProjectForm();
-  let newForm = document.getElementById("edit-project-form");
-  poop.replaceWith(newForm);
-}
-
-poop.addEventListener("click", changePoop);
