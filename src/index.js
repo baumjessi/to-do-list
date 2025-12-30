@@ -1,14 +1,15 @@
 import "./style.css";
-import { saveProject } from "./project-library";
-import { projectListDisplayEventHandler, displayNewProject, newProjectFormSubmit, createEditProjectForm } from "./project-sidebar";
+import { projectListDisplayEventHandler } from "./project-sidebar";
+import { projectSelectMenuHandler } from "./task-sidebar";
 import {
   showAddTaskDialog,
   exitAddTaskDialog,
-  projectSelectMenuHandler,
   newTaskFormSubmit,
-} from "./task-sidebar";
-import { taskButtonEventHandler, editTaskFormSubmit } from "./task-card-display";
+  editTaskFormSubmit
+} from "./task-form-handler";
+import { taskButtonEventHandler } from "./task-card-display";
 import { displayAllTasks } from "./on-page-load";
+import { allTasksBtnHandler } from "./task-sidebar";
 
 projectListDisplayEventHandler();
 
@@ -23,3 +24,5 @@ taskButtonEventHandler();
 
 editTaskFormSubmit();
 displayAllTasks();
+
+allTasksBtnHandler();

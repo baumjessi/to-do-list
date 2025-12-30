@@ -1,38 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>    <meta charset="UTF-8" />
+  <head>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>doo &middot; it</title>
   </head>
   <body>
     <header>
-       <div class="title-and-icon">
-        <img src="./assets/poop.png" class="poop-icon" id="poop" alt="A silly smiling poop">
-      <h1 class="app-title">Doo &middot; It</h1>
+      <div class="title-and-icon">
+        <img
+          src="./assets/poop.png"
+          class="poop-icon"
+          id="poop"
+          alt="A silly smiling poop"
+        />
+        <h1 class="app-title">Doo &middot; It</h1>
       </div>
     </header>
     <div class="app-content">
       <div class="sidebar" id="sidebar">
-        <button class="add-task-button" id="add-task-button">
-            <img src="./assets/add.png" class="sidebar-icon add-icon" alt="Add icon">Add new task</button>
-        <button class="all-tasks-button">
-            <img src="./assets/all-tasks.png" class="sidebar-icon all-tasks-icon" alt="All tasks icon">
-            All Tasks</button>
+        <button class="sidebar-task-button" id="add-task-button">
+          <img
+            src="./assets/add.png"
+            class="sidebar-icon add-icon"
+            alt="Add icon"
+          />Add new task
+        </button>
+        <button class="sidebar-task-button" id="all-tasks-button">
+          <img
+            src="./assets/all-tasks.png"
+            class="sidebar-icon all-tasks-icon"
+            alt="All tasks icon"
+          />
+          All Tasks
+        </button>
         <dialog class="dialog" id="new-task-dialog">
-          <button class="dialog-exit" id="dialog-exit">X</button>
-          <form id="new-task-form">
+          <form class="task-form" id="new-task-form">
             <h1 class="dialog-header">New Task</h1>
             <div class="dialog-input">
               <label class="dialog-label" for="title">Title</label>
-              <input type="text" id="title" name="title" required>
+              <input type="text" id="title" name="title" required />
             </div>
-             <div class="dialog-input">
+            <div class="dialog-input">
               <label class="dialog-label" for="description">Description</label>
-              <textarea id="description" name="description" rows="10" cols="50" required></textarea>
+              <textarea
+                id="description"
+                name="description"
+                rows="10"
+                cols="50"
+                required
+              ></textarea>
             </div>
-             <div class="dialog-input">
+            <div class="dialog-input">
               <label class="dialog-label" for="title">Date</label>
-              <input type="date" id="date">
+              <input type="date" id="date" />
             </div>
             <div class="dialog-input">
               <label class="dialog-label" for="priority">Priority</label>
@@ -40,62 +61,105 @@
                 <option value="low">Low</option>
                 <option value="medium">Medium</option>
                 <option value="high">High</option>
-                </select>
+              </select>
             </div>
-             <div class="dialog-input">
+            <div class="dialog-input">
               <label class="dialog-label" for="project">Project</label>
               <select id="project" name="project">
                 <option value="project">Projects will go here</option>
-               </select>
+              </select>
             </div>
-             <button class="form-submit" type="submit">Add</button>
+            <div class="dialog-button-div">
+              <button class="dialog-button" type="submit">
+                <img
+                  src="./assets/save.png"
+                  class="dialog-button-icon"
+                  alt="New task save button"
+                />
+              </button>
+              <button class="dialog-button" id="dialog-exit">
+                <img
+                  src="./assets/cancel.png"
+                  class="dialog-button-icon"
+                  alt="New task cancel button"
+                />
+              </button>
+            </div>
           </form>
         </dialog>
         <button class="project-dropdown-button" id="project-dropdown-button">
-            <img src="./assets/right-arrow.png" class="sidebar-icon right-arrow" Alt="Arrow to expand projects list">Projects
-            </button>
+          <img
+            src="./assets/right-arrow.png"
+            class="sidebar-icon right-arrow"
+            alt="Arrow to expand projects list"
+          />Projects
+        </button>
       </div>
       <div class="task-container">
         <h1 class="task-container-header">All Tasks</h1>
-        <div class="task-container-grid" id="task-container-grid">
-        </div>
+        <div class="task-container-grid" id="task-container-grid"></div>
       </div>
     </div>
     <footer>
-        <div class="odin-blurb">Created by Jessi B. for the Odin Project</div>
+      <div class="odin-blurb">Created by Jessi B. for the Odin Project</div>
     </footer>
     <dialog class="dialog" id="edit-task-dialog">
-          <button class="dialog-exit" id="edit-dialog-exit">X</button>
-          <form id="edit-task-form">
-             <h1 class="dialog-header">Edit Task</h1>
-            <div class="dialog-input">
-              <label class="dialog-label" for="editTitle">Title</label>
-              <input type="text" id="editTitle" name="editTitle" required>
-            </div>
-             <div class="dialog-input">
-              <label class="dialog-label" for="edit-description">Description</label>
-              <textarea id="editDescription" name="editDescription" rows="10" cols="50" required></textarea>
-            </div>
-             <div class="dialog-input">
-              <label class="dialog-label" for="editDate">Date</label>
-              <input type="date" name="editDate" id="editDate" required>
-            </div>
-            <div class="dialog-input">
-              <label class="dialog-label" for="editPriority">Priority</label>
-              <select id="editPriority" name="editPriority" required>
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
-                </select>
-            </div>
-             <div class="dialog-input">
-              <label class="dialog-label" for="editProject">Project</label>
-              <select id="editProject" name="editProject" required>
-                <option value="project">Projects will go here</option>
-               </select>
-            </div>
-             <input class="form-submit" id="edit-task-submit-button" type="submit">Save</button>
-          </form>
-        </dialog>
+      <form class="task-form" id="edit-task-form">
+        <h1 class="dialog-header">Edit Task</h1>
+        <div class="dialog-input">
+          <label class="dialog-label" for="editTitle">Title</label>
+          <input type="text" id="editTitle" name="editTitle" required />
+        </div>
+        <div class="dialog-input">
+          <label class="dialog-label" for="edit-description">Description</label>
+          <textarea
+            id="editDescription"
+            name="editDescription"
+            rows="10"
+            cols="50"
+            required
+          ></textarea>
+        </div>
+        <div class="dialog-input">
+          <label class="dialog-label" for="editDate">Date</label>
+          <input type="date" name="editDate" id="editDate" required />
+        </div>
+        <div class="dialog-input">
+          <label class="dialog-label" for="editPriority">Priority</label>
+          <select id="editPriority" name="editPriority" required>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+        <div class="dialog-input">
+          <label class="dialog-label" for="editProject">Project</label>
+          <select id="editProject" name="editProject" required>
+            <option value="project">Projects will go here</option>
+          </select>
+        </div>
+        <div class="dialog-button-div">
+          <button
+            class="dialog-button"
+            id="edit-task-submit-button"
+            type="submit"
+          >
+            <img
+              src="./assets/save.png"
+              class="dialog-button-icon"
+              alt="Edit form save icon"
+            />
+          </button>
+          <button class="dialog-button" id="edit-dialog-exit">
+            <img
+              src="./assets/cancel.png"
+              alt="Edit task cancel button"
+              class="dialog-button-icon"
+            />
+          </button>
+        </div>
+      </form>
+    </dialog>
+    <dialog class="dialog" id="add-project-dialog"></dialog>
   </body>
 </html>
